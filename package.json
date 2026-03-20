@@ -1,0 +1,17 @@
+{
+  "name": "@slashand/sdui-blade-core",
+  "version": "1.0.0",
+  "description": "Framework-agnostic JSON-driven Blade orchestrator for Server-Driven UI architectures.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
