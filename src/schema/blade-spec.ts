@@ -1,11 +1,11 @@
 /**
  * SYSTEM: @slashand/sdui-blade-core
  * FILE: src/schema/blade-spec.ts
- * 
+ *
  * CORE RESPONSIBILITIES:
  * 1. Define the rigorous, Framework-Agnostic JSON Schema for the Journey Protocol.
  * 2. Act as the ultimate source of truth for React/Angular renderers parsing the active payload.
- * 
+ *
  * DESIGN PATTERN: DOMAIN-DRIVEN DESIGN INTERFACES
  */
 
@@ -96,15 +96,15 @@ export interface SduiBlade {
     title: string;
     subtitle?: string;
     width?: 'small' | 'medium' | 'large' | 'xlarge' | number;
-    
-    // --- ENTERPRISE CORE CAPABILITIES ---
-    isDirty?: boolean;       // Prevents accidental closure (unsaved changes)
-    disableClose?: boolean;  // Entirely hides the 'X' button in the blade header
-    version?: string | number; // Optimistic concurrency tracking (revision IDs)
-    etag?: string;           // Payload integrity hash preventing save conflicts
 
-    toolbar?: SduiNode[];    // Action headers (Save, Discard)
-    footer?: SduiNode[];     // Fixed bottom Action bars
+    // --- ENTERPRISE CORE CAPABILITIES ---
+    isDirty?: boolean; // Prevents accidental closure (unsaved changes)
+    disableClose?: boolean; // Entirely hides the 'X' button in the blade header
+    version?: string | number; // Optimistic concurrency tracking (revision IDs)
+    etag?: string; // Payload integrity hash preventing save conflicts
+
+    toolbar?: SduiNode[]; // Action headers (Save, Discard)
+    footer?: SduiNode[]; // Fixed bottom Action bars
   };
   children?: SduiNode[];
 }

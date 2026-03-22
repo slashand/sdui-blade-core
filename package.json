@@ -45,12 +45,14 @@
     "dev": "tsc -w",
     "test": "vitest run",
     "publish:alpha": "npm version prerelease --preid=alpha --no-git-tag-version && npm run build && npm publish --tag alpha",
-    "publish:prod": "npm version patch --no-git-tag-version && npm run build && npm publish"
+    "publish:prod": "npm version patch --no-git-tag-version && npm run build && npm publish",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "dependencies": {
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "prettier": "^3.8.1",
     "typescript": "^5.9.3",
     "vitest": "^2.1.8"
   }
