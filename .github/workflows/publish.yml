@@ -33,5 +33,6 @@ jobs:
       - name: Build Package
         run: npm run build --if-present
 
-      - name: Publish to NPM (Prerelease)
         run: npm publish --access public --tag alpha --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_SDUI_BLADE }}
