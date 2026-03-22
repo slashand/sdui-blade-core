@@ -1,6 +1,6 @@
 {
   "name": "@slashand/sdui-blade-core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Framework-agnostic JSON-driven Blade orchestrator for Server-Driven UI architectures.",
   "author": "Slashand Studio",
   "license": "MIT",
@@ -38,8 +38,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "publish:alpha": "npm version prerelease --preid=alpha --no-git-tag-version && npm run build && npm publish ./dist --tag alpha",
-    "publish:prod": "npm version patch --no-git-tag-version && npm run build && npm publish ./dist"
+    "publish:alpha": "npm version prerelease --preid=alpha --no-git-tag-version && npm run build && npm publish --tag alpha",
+    "publish:prod": "npm version patch --no-git-tag-version && npm run build && npm publish"
   },
   "dependencies": {
     "zustand": "^5.0.12"
