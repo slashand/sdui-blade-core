@@ -1,0 +1,7 @@
+# Ignore these for NPM publish
+src/
+example/
+.github/
+.gitignore
+node_modules/
+tests/
