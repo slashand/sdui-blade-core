@@ -4,3 +4,4 @@ dist/
 
 .npmrc
 docs/
+package-lock.json

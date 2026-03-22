@@ -1,9 +1,26 @@
 {
   "name": "@slashand/sdui-blade-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Framework-agnostic JSON-driven Blade orchestrator for Server-Driven UI architectures.",
+  "author": "Slashand Studio",
+  "license": "MIT",
+  "keywords": [
+    "sdui",
+    "server-driven-ui",
+    "blade-system",
+    "orchestration",
+    "json-ui"
+  ],
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -11,14 +28,18 @@
     "type": "git",
     "url": "https://github.com/slashand/sdui-blade-core.git"
   },
+  "bugs": {
+    "url": "https://github.com/slashand/sdui-blade-core/issues"
+  },
+  "homepage": "https://github.com/slashand/sdui-blade-core#readme",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "publish:alpha": "npm version prerelease --preid=alpha && npm run build && npm publish ./dist --tag alpha",
-    "publish:prod": "npm version patch && npm run build && npm publish ./dist"
+    "publish:alpha": "npm version prerelease --preid=alpha --no-git-tag-version && npm run build && npm publish ./dist --tag alpha",
+    "publish:prod": "npm version patch --no-git-tag-version && npm run build && npm publish ./dist"
   },
   "dependencies": {
     "zustand": "^5.0.12"
