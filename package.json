@@ -1,6 +1,6 @@
 {
   "name": "@slashand/sdui-blade-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Framework-agnostic JSON-driven Blade orchestrator for Server-Driven UI architectures.",
   "author": "Slashand Studio",
   "license": "MIT",
