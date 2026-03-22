@@ -7,7 +7,7 @@
 
 ## 1. Project Identity & Open Source Guidelines
 - This is a highly abstracted, **public open-source** repository governing the Orchestration Engine for horizontal spatial interfaces (The Journey Protocol).
-- **NO PROPRIETARY TERMINOLOGY**: Never reference Microsoft, Azure, or Ibiza inside internal codebase classes. Maintain purely generic architectural nomenclature (`Blade`, `Journey`, `Hub`, `Lens`).
+- **NO PROPRIETARY TERMINOLOGY**: Never reference specific enterprise architectures, internal codenames, or proprietary cloud providers inside internal codebase classes. Maintain purely generic architectural nomenclature (`Blade`, `Journey`, `Hub`, `Lens`).
 - **NO PII IN THE DOCS**: Do not insert the creator's real name or private company identifiers anywhere in documentation or code snippets, except where strictly configured in the package.json `author` field.
 
 ## 2. ARCHITECTURAL SOVEREIGNTY & THE MVP BAN (PROACTIVE PROTOCOL)
