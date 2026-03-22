@@ -5,6 +5,9 @@ on:
     types: [published]
   workflow_dispatch: # Allows you to manually click a "Run Workflow" button in GitHub
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
@@ -12,10 +15,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20.x
+      - name: Setup Node.js 24.x
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install Dependencies
