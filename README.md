@@ -1,4 +1,5 @@
 # @slashand/sdui-blade-core
+>
 > The Agnostic Engine for Horizontal "Journey" Orchestration
 
 [![npm version](https://img.shields.io/npm/v/@slashand/sdui-blade-core.svg)](https://www.npmjs.com/package/@slashand/sdui-blade-core)
@@ -8,7 +9,7 @@
 
 ## The Philosophy
 
-We believe the traditional "Modal Window" is an architectural anti-pattern for sophisticated enterprise applications. Modals destroy context and confine the user. 
+We believe the traditional "Modal Window" is an architectural anti-pattern for sophisticated enterprise applications. Modals destroy context and confine the user.
 
 This core library leverages the **Journey Protocol**: a systemic approach to managing UI states horizontally. Blades unfold across a vast panorama, maintaining their underlying operational state. You can read the foundational philosophy in our **[Expert Thinking Diary](./docs/000-index.md)**.
 
@@ -23,14 +24,20 @@ This core library leverages the **Journey Protocol**: a systemic approach to man
 
 We treat our documentation as an evolving engineering manifesto. If you intend to contribute or utilize this architecture in your own stacks, please review the internal architectural diaries:
 
-*   [**001: The Journey Protocol**](./docs/001-the-journey-protocol.md)
-*   [**002: Inversion of Mount Points**](./docs/002-inversion-of-mount-points.md)
+- [**000: The Journey Architecture Manifesto**](./docs/000-index.md) (Index)
+- [**001: The Journey Protocol**](./docs/001-the-journey-protocol.md)
+- [**002: Inversion of Mount Points**](./docs/002-inversion-of-mount-points.md)
+- [**003: The Taxonomic Hierarchy**](./docs/003-the-taxonomic-hierarchy.md)
+- [**004: The Styling Constants**](./docs/004-the-styling-constants.md)
+- [**005: Schema and Types**](./docs/005-schema-and-types.md)
+- [**006: Spatial Boundaries and Regions**](./docs/006-spatial-boundaries-and-regions.md)
 
 ## Installation
 
 ```bash
 npm install @slashand/sdui-blade-core
 ```
+
 *(Note: You will typically consume this via a framework-specific wrapper like `@slashand/sdui-blade-react` or `@slashand/sdui-blade-angular`)*
 
 ## Contributing
