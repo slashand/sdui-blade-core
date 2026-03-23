@@ -96,6 +96,7 @@ export interface SduiBlade {
     title: string;
     subtitle?: string;
     width?: 'small' | 'medium' | 'large' | 'xlarge' | number;
+    region?: string; // Target spatial boundary (e.g., 'global', 'content', 'sidebar')
 
     // --- ENTERPRISE CORE CAPABILITIES ---
     isDirty?: boolean; // Prevents accidental closure (unsaved changes)
