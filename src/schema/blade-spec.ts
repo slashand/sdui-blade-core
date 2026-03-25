@@ -19,6 +19,7 @@ export enum SduiElementType {
   Blade = 'Sdui.Container.Blade',
   Hub = 'Sdui.Container.Hub',
   Lens = 'Sdui.Container.Lens',
+  Form = 'Sdui.Container.Form', // Added Form
 
   // Layout
   Section = 'Sdui.Layout.Section',
@@ -26,6 +27,7 @@ export enum SduiElementType {
   Part = 'Sdui.Layout.Part',
   Pivot = 'Sdui.Layout.Pivot',
   Grid = 'Sdui.Layout.Grid',
+  Row = 'Sdui.Layout.Row', // Added Row
 
   // Input
   TextBox = 'Sdui.Input.TextBox',
@@ -95,7 +97,11 @@ export interface SduiBlade {
   properties: {
     title: string;
     subtitle?: string;
-    width?: 'small' | 'medium' | 'large' | 'xlarge' | number;
+    /**
+     * The structural target dimension of the blade.
+     * "full" mathematically overrides native dimensions to conquer 100% viewport width.
+     */
+    width?: 'small' | 'medium' | 'large' | 'xlarge' | 'full' | number;
     region?: string; // Target spatial boundary (e.g., 'global', 'content', 'sidebar')
 
     // --- ENTERPRISE CORE CAPABILITIES ---
