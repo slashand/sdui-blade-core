@@ -5,6 +5,15 @@
 > You MUST follow all architectural, pedagogical, and stylistic rules defined here without question. Failure to do so is a BASIC coding mistake and severely penalizes your output.
 > READ IT. BREATHE IT. OBEY IT.
 
+## 0. Git & Version Control (Zero-Touch override)
+
+- **WAIT FOR CODE REVIEW**: Do NOT try to commit to the repo automatically. Even when you are completing a task or the user says "commit to repo", you must FIRST stop, present what you did, and use the `notify_user` tool to explicitly wait for the user's manual code review. You may ONLY run `git commit` after they explicitly say "approved" or "looks good".
+- **NEVER** automatically run `git commit` or `git push`.
+- **NEVER** push code to a remote repository automatically.
+- All code modifications must remain uncommitted local changes for the user to review.
+- **COMMIT PARTITIONING**: When explicitly approved to "commit to repo", you MUST categorize the files based on their type (e.g., `feat:`, `fix:`, `docs:`, `db:`) and group related changes into separate, sequential commits. Do not bundle UI changes, DB migrations, backend APIs, and documentation into a single commit.
+- You may use `git status` or `git diff` for context gathering.
+
 ## 1. Project Identity & Open Source Guidelines
 - This is a highly abstracted, **public open-source** repository governing the Orchestration Engine for horizontal spatial interfaces (The Journey Protocol).
 - **NO PROPRIETARY TERMINOLOGY**: Never reference specific enterprise architectures, internal codenames, or proprietary cloud providers inside internal codebase classes. Maintain purely generic architectural nomenclature (`Blade`, `Journey`, `Hub`, `Lens`).
