@@ -1,34 +1,54 @@
 import { createStore } from 'zustand/vanilla';
+import { persist, createJSONStorage } from 'zustand/middleware';
 import { SduiBlade } from './schema/blade-spec';
 
 export interface BladeState {
   activeBlades: Required<SduiBlade>[];
+  payloadCache: Record<string, Required<SduiBlade>>;
   openBlade: (blade: SduiBlade) => void;
+  setAppBlade: (blade: SduiBlade) => void;
   closeBlade: (id: string, force?: boolean) => void;
   closeTopBlade: (force?: boolean) => void;
   closeAllBlades: (force?: boolean) => void;
 }
 
 export const createSduiBladeStore = () => {
-  return createStore<BladeState>()((set) => ({
-    activeBlades: [],
+  return createStore<BladeState>()(
+    persist(
+      (set) => ({
+        activeBlades: [],
+        payloadCache: {},
 
     openBlade: (blade) => {
       const id = blade.id || `${blade.type}-${Date.now()}`;
       set((state) => {
-        // Prevent duplicate consecutive matching nodes during transient state updates
+        // Prevent stacking the EXACT SAME IDENTIFIER consecutively
         const lastBlade = state.activeBlades[state.activeBlades.length - 1];
-        if (lastBlade && lastBlade.type === blade.type) {
+        if (lastBlade && lastBlade.id === id) {
           const newBlades = [...state.activeBlades];
-          newBlades[newBlades.length - 1] = { ...lastBlade, properties: blade.properties || {} };
-          return { activeBlades: newBlades };
+          const parsedBlade = { ...blade, id, properties: blade.properties || {}, children: blade.children || lastBlade.children } as Required<SduiBlade>;
+          newBlades[newBlades.length - 1] = parsedBlade;
+          return { 
+            activeBlades: newBlades,
+            payloadCache: { ...state.payloadCache, [id]: parsedBlade }
+          };
         }
 
+        const parsedBlade = { ...blade, id, properties: blade.properties || {} } as Required<SduiBlade>;
         return {
-          activeBlades: [
-            ...state.activeBlades,
-            { ...blade, id, properties: blade.properties || {} } as Required<SduiBlade>,
-          ],
+          activeBlades: [...state.activeBlades, parsedBlade],
+          payloadCache: { ...state.payloadCache, [id]: parsedBlade }
+        };
+      });
+    },
+
+    setAppBlade: (blade) => {
+      const id = blade.id || `${blade.type}-${Date.now()}`;
+      set((state) => {
+        const parsedBlade = { ...blade, id, properties: blade.properties || {} } as Required<SduiBlade>;
+        return {
+          activeBlades: [parsedBlade],
+          payloadCache: { ...state.payloadCache, [id]: parsedBlade }
         };
       });
     },
@@ -71,5 +91,10 @@ export const createSduiBladeStore = () => {
         return { activeBlades: [] };
       });
     },
-  }));
+  }),
+  {
+    name: 'sdui-blade-session', // unique name
+    storage: createJSONStorage(() => (typeof window !== 'undefined' ? sessionStorage : ({} as any))),
+  }
+  ));
 };
