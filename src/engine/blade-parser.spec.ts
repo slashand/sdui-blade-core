@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { SduiParser } from './blade-parser';
-import { SduiElementType, SduiManifest } from '../schema/blade-spec';
+import { SduiBlade, SduiElementType, SduiManifest } from '../schema/blade-spec';
 
 describe('SduiParser Engine Validation', () => {
   describe('Root Manifest Integrity', () => {
@@ -41,6 +41,46 @@ describe('SduiParser Engine Validation', () => {
 
     it('Throws a fatal schema error if a Node lacks a "type" property completely', () => {
       expect(() => SduiParser.parseNode({ id: '1' })).toThrowError(/missing required "type"/);
+    });
+  });
+
+  describe('Blade Backdrop Configuration', () => {
+    it('preserves a valid transparent interaction barrier configuration', () => {
+      const blade = SduiParser.parseNode({
+        id: 'transparent-blade',
+        type: SduiElementType.Blade,
+        properties: {
+          backdrop: { blur: 0, closeOnClick: false, enabled: true, opacity: 0 },
+          title: 'Transparent Blade',
+        },
+      }) as SduiBlade;
+
+      expect(blade.properties.backdrop).toEqual({
+        blur: 0,
+        closeOnClick: false,
+        enabled: true,
+        opacity: 0,
+      });
+    });
+
+    it('rejects an opacity outside the renderer-safe range', () => {
+      expect(() =>
+        SduiParser.parseNode({
+          id: 'invalid-opacity-blade',
+          type: SduiElementType.Blade,
+          properties: { backdrop: { opacity: 1.1 }, title: 'Invalid Opacity' },
+        }),
+      ).toThrowError(/opacity.*0 through 1/);
+    });
+
+    it('rejects a negative blur radius', () => {
+      expect(() =>
+        SduiParser.parseNode({
+          id: 'invalid-blur-blade',
+          type: SduiElementType.Blade,
+          properties: { backdrop: { blur: -1 }, title: 'Invalid Blur' },
+        }),
+      ).toThrowError(/blur.*non-negative/);
     });
   });
 

@@ -91,12 +91,24 @@ export interface SduiInvokeControl extends SduiNode {
   };
 }
 
+/**
+ * Renderer-neutral configuration for the interaction layer behind an open blade.
+ * The overlay remains an interaction barrier when opacity is zero.
+ */
+export interface SduiBackdropConfig {
+  blur?: number;
+  closeOnClick?: boolean;
+  enabled?: boolean;
+  opacity?: number;
+}
+
 export interface SduiBlade {
   id: string;
   type: SduiElementType.Blade;
   properties: {
     title: string;
     subtitle?: string;
+    backdrop?: SduiBackdropConfig;
     /**
      * The structural target dimension of the blade.
      * "full" mathematically overrides native dimensions to conquer 100% viewport width.
