@@ -113,8 +113,13 @@ export interface SduiBlade {
      * The structural target dimension of the blade.
      * "full" mathematically overrides native dimensions to conquer 100% viewport width.
      */
-    width?: 'small' | 'medium' | 'large' | 'xlarge' | 'full' | number;
+    width?: 'small' | 'medium' | 'large' | 'xlarge' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | 'full' | number;
     region?: string; // Target spatial boundary (e.g., 'global', 'content', 'sidebar')
+
+    // --- LAYER & OVERLAY CAPABILITIES ---
+    isTransient?: boolean; // Elevates the blade as a blocking modal layout structure
+    backdropColor?: string; // Explicit CSS rgba background defining the exact darkness of the transient overlay (e.g. 'rgba(0,0,0,0.8)')
+    backdropBlur?: string; // Explicit CSS blur radius mapped to the transient overlay (e.g. '8px')
 
     // --- ENTERPRISE CORE CAPABILITIES ---
     isDirty?: boolean; // Prevents accidental closure (unsaved changes)
