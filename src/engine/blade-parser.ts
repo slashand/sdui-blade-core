@@ -1,4 +1,9 @@
-import { SduiBlade, SduiElementType, SduiManifest, SduiNode } from '../schema/blade-spec';
+import {
+  SduiBlade,
+  SduiElementType,
+  SduiManifest,
+  SduiNode,
+} from '../schema/blade-spec';
 import { SduiErrorCode, SduiParserError } from './errors';
 
 export class SduiParser {
@@ -109,6 +114,68 @@ export class SduiParser {
     // ----------------------------------------------------------------------
     switch (type) {
       case SduiElementType.Blade:
+        if (properties.backdrop !== undefined) {
+          const backdrop = properties.backdrop;
+          if (!backdrop || typeof backdrop !== 'object' || Array.isArray(backdrop)) {
+            throw new SduiParserError({
+              code: SduiErrorCode.ERR_NODE_INVALID_PROPERTY_TYPE,
+              message: 'Blade "backdrop" must be an object.',
+              nodeId: rawNode.id,
+              nodeType: type,
+            });
+          }
+
+          const backdropProperties = backdrop as Record<string, unknown>;
+          const backdropBlur = backdropProperties.blur;
+          const backdropCloseOnClick = backdropProperties.closeOnClick;
+          const backdropEnabled = backdropProperties.enabled;
+          const backdropOpacity = backdropProperties.opacity;
+
+          if (
+            backdropBlur !== undefined &&
+            (typeof backdropBlur !== 'number' || !Number.isFinite(backdropBlur) || backdropBlur < 0)
+          ) {
+            throw new SduiParserError({
+              code: SduiErrorCode.ERR_NODE_INVALID_PROPERTY_TYPE,
+              message: 'Blade backdrop "blur" must be a non-negative finite number.',
+              nodeId: rawNode.id,
+              nodeType: type,
+            });
+          }
+
+          if (backdropCloseOnClick !== undefined && typeof backdropCloseOnClick !== 'boolean') {
+            throw new SduiParserError({
+              code: SduiErrorCode.ERR_NODE_INVALID_PROPERTY_TYPE,
+              message: 'Blade backdrop "closeOnClick" must be a boolean.',
+              nodeId: rawNode.id,
+              nodeType: type,
+            });
+          }
+
+          if (backdropEnabled !== undefined && typeof backdropEnabled !== 'boolean') {
+            throw new SduiParserError({
+              code: SduiErrorCode.ERR_NODE_INVALID_PROPERTY_TYPE,
+              message: 'Blade backdrop "enabled" must be a boolean.',
+              nodeId: rawNode.id,
+              nodeType: type,
+            });
+          }
+
+          if (
+            backdropOpacity !== undefined &&
+            (typeof backdropOpacity !== 'number' ||
+              !Number.isFinite(backdropOpacity) ||
+              backdropOpacity < 0 ||
+              backdropOpacity > 1)
+          ) {
+            throw new SduiParserError({
+              code: SduiErrorCode.ERR_NODE_INVALID_PROPERTY_TYPE,
+              message: 'Blade backdrop "opacity" must be a finite number from 0 through 1.',
+              nodeId: rawNode.id,
+              nodeType: type,
+            });
+          }
+        }
         if (properties.toolbar && !Array.isArray(properties.toolbar)) {
           throw new SduiParserError({
             code: SduiErrorCode.ERR_NODE_INVALID_PROPERTY_TYPE,
