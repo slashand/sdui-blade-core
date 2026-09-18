@@ -102,6 +102,24 @@ export interface SduiBackdropConfig {
   opacity?: number;
 }
 
+export const SDUI_DEFAULT_BACKDROP_CONFIG: Required<SduiBackdropConfig> = {
+  blur: 0,
+  closeOnClick: false,
+  enabled: true,
+  opacity: 0,
+};
+
+export function resolveSduiBackdropConfig(
+  config?: SduiBackdropConfig,
+): Required<SduiBackdropConfig> {
+  return {
+    blur: config?.blur ?? SDUI_DEFAULT_BACKDROP_CONFIG.blur,
+    closeOnClick: config?.closeOnClick ?? SDUI_DEFAULT_BACKDROP_CONFIG.closeOnClick,
+    enabled: config?.enabled ?? SDUI_DEFAULT_BACKDROP_CONFIG.enabled,
+    opacity: config?.opacity ?? SDUI_DEFAULT_BACKDROP_CONFIG.opacity,
+  };
+}
+
 export interface SduiBlade {
   id: string;
   type: SduiElementType.Blade;
