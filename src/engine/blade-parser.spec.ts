@@ -1,8 +1,31 @@
 import { describe, it, expect } from 'vitest';
 import { SduiParser } from './blade-parser';
-import { SduiBlade, SduiElementType, SduiManifest } from '../schema/blade-spec';
+import {
+  resolveSduiBackdropConfig,
+  SduiBlade,
+  SduiElementType,
+  SduiManifest,
+} from '../schema/blade-spec';
 
 describe('SduiParser Engine Validation', () => {
+  it('resolves a non-closing transparent backdrop by default', () => {
+    expect(resolveSduiBackdropConfig()).toEqual({
+      blur: 0,
+      closeOnClick: false,
+      enabled: true,
+      opacity: 0,
+    });
+  });
+
+  it('preserves explicitly configured backdrop values', () => {
+    expect(resolveSduiBackdropConfig({ closeOnClick: true, opacity: 0.5 })).toEqual({
+      blur: 0,
+      closeOnClick: true,
+      enabled: true,
+      opacity: 0.5,
+    });
+  });
+
   describe('Root Manifest Integrity', () => {
     it('Parses a valid minimal Enterprise Manifest safely', () => {
       const rawPayload = {
