@@ -1,6 +1,6 @@
 {
   "name": "@slashand/sdui-blade-core",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0",
   "description": "Framework-agnostic JSON-driven Blade orchestrator for Server-Driven UI architectures.",
   "author": "Slashand LLC",
   "license": "MIT",
@@ -38,22 +38,23 @@
   },
   "homepage": "https://github.com/slashand/sdui-blade-core#readme",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "tag": "latest"
   },
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
     "test": "vitest run",
-    "publish:alpha": "npm version prerelease --preid=alpha --no-git-tag-version && npm run build && npm publish --tag alpha",
-    "publish:prod": "npm version patch --no-git-tag-version && npm run build && npm publish",
-    "format": "prettier --write \"src/**/*.ts\""
+    "publish:prod": "npm run publish:latest",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "publish:latest": "npm run build && npm publish --access public --tag latest --provenance"
   },
   "dependencies": {
-    "zustand": "^5.0.12"
+    "zustand": "^5.1.0"
   },
   "devDependencies": {
-    "prettier": "^3.8.1",
+    "prettier": "^3.10.1",
     "typescript": "^5.9.3",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.12"
   }
 }
