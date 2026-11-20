@@ -111,9 +111,7 @@ export const SDUI_DEFAULT_BACKDROP_CONFIG: Required<SduiBackdropConfig> = {
   opacity: 0,
 };
 
-export function resolveSduiBackdropConfig(
-  config?: SduiBackdropConfig,
-): Required<SduiBackdropConfig> {
+export function resolveSduiBackdropConfig(config?: SduiBackdropConfig): Required<SduiBackdropConfig> {
   return {
     blur: config?.blur ?? SDUI_DEFAULT_BACKDROP_CONFIG.blur,
     closeOnClick: config?.closeOnClick ?? SDUI_DEFAULT_BACKDROP_CONFIG.closeOnClick,
@@ -133,7 +131,8 @@ export interface SduiBlade {
      * The structural target dimension of the blade.
      * "full" mathematically overrides native dimensions to conquer 100% viewport width.
      */
-    width?: 'small' | 'medium' | 'large' | 'xlarge' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | 'full' | number;
+    width?:
+      'small' | 'medium' | 'large' | 'xlarge' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | 'full' | number;
     region?: string; // Target spatial boundary (e.g., 'global', 'content', 'sidebar')
 
     // --- LAYER & OVERLAY CAPABILITIES ---
