@@ -1,11 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { SduiParser } from './blade-parser';
-import {
-  resolveSduiBackdropConfig,
-  SduiBlade,
-  SduiElementType,
-  SduiManifest,
-} from '../schema/blade-spec';
+import { SduiParser } from './blade-parser.js';
+import { resolveSduiBackdropConfig, SduiBlade, SduiElementType, SduiManifest } from '../schema/blade-spec.js';
 
 describe('SduiParser Engine Validation', () => {
   it('resolves a non-closing transparent backdrop by default', () => {

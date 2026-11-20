@@ -76,7 +76,9 @@ export interface SduiNode {
  * Action definitions (e.g., clicking a button or opening a new Blade transiently)
  */
 export interface SduiAction {
-  type: 'navigate' | 'invoke' | 'dispatch';
+  /** Navigation changes the blade stack; invoke/dispatch are handled by the host application. */
+  type: 'navigate' | 'invoke' | 'dispatch' | 'close';
+  /** For close, omit to close the top blade, use a blade id, or use 'all'. */
   target?: string;
   payload?: Record<string, unknown>;
 }

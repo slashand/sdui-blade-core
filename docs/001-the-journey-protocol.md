@@ -35,6 +35,7 @@ Durable Blades are the backbone of the user's workflow. They represent permanent
 ### 2. Transient Blades (The Ephemeral Phantoms)
 Transient Blades exist solely in the ephemeral memory of the browser. They are used for immediate, localized actions (e.g., "Give Feedback" or "Quick Edit").
 *   **No Routing:** Transient Blades are *never* committed to the URL.
+*   **Browser navigation:** Core records every blade stack in a browser history frame. Transient IDs live only in that frame's `history.state`; Back and Forward traverse them one blade at a time without adding them to a shareable URL. A new document hydrates only durable URL IDs.
 *   **Volatility:** If a user refreshes the browser while a Transient Blade is open, the blade vanishes. The Engine simply rehydrates the last known Durable state, ensuring the user is returned to a safe, persistent reality.
 *   **Resolution:** When a Transient Blade completes its mission or is dismissed, it elegantly slides away, revealing the underlying Durable reality without a single destructive reload.
 
@@ -43,5 +44,7 @@ Transient Blades exist solely in the ephemeral memory of the browser. They are u
 The `@slashand/sdui-blade-core` acts as a pure, mathematical orchestrator. It knows **nothing** about React components or Angular templates.
 
 It maintains a `JourneyStore`—an absolute source of truth regarding which Blades are open, their sequential order, their maximized status, and their transient reality. It communicates with the UI layer entirely via JSON payloads.
+
+Button actions are explicit: `navigate` pushes a blade, `close` removes the top blade (or a named target, with `all` for the whole stack), and `dispatch`/`invoke` hand domain work to the host application. A footer position does not imply dismissal. The host must handle a domain action and decide whether to remain open, close after success, or show an error; the Core never treats a business button as a close command.
 
 *This separation ensures the UI can be endlessly refactored while the Journey Protocol remains immutable.*
