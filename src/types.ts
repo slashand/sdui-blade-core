@@ -1,4 +1,4 @@
-import { SduiBlade } from './schema/blade-spec';
+import { SduiBlade } from './schema/blade-spec.js';
 // Legacy shim to prevent React App explosion during refactor
 export type SduiBladeNode = SduiBlade;
-export * from './schema/blade-spec';
+export * from './schema/blade-spec.js';

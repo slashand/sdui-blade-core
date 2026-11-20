@@ -1,10 +1,5 @@
-import {
-  SduiBlade,
-  SduiElementType,
-  SduiManifest,
-  SduiNode,
-} from '../schema/blade-spec';
-import { SduiErrorCode, SduiParserError } from './errors';
+import { SduiBlade, SduiElementType, SduiManifest, SduiNode } from '../schema/blade-spec.js';
+import { SduiErrorCode, SduiParserError } from './errors.js';
 
 export class SduiParser {
   /**
