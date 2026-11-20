@@ -1,5 +1,5 @@
 # @slashand/sdui-blade-core
->
+
 > The Agnostic Engine for Horizontal "Journey" Orchestration
 
 [![npm version](https://img.shields.io/npm/v/@slashand/sdui-blade-core.svg)](https://www.npmjs.com/package/@slashand/sdui-blade-core)
@@ -38,7 +38,7 @@ We treat our documentation as an evolving engineering manifesto. If you intend t
 npm install @slashand/sdui-blade-core
 ```
 
-*(Note: You will typically consume this via a framework-specific wrapper like `@slashand/sdui-blade-react` or `@slashand/sdui-blade-angular`)*
+_(Note: You will typically consume this via a framework-specific wrapper like `@slashand/sdui-blade-react` or `@slashand/sdui-blade-angular`)_
 
 ## Contributing
 
