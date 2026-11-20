@@ -3,7 +3,6 @@ name: Publish to NPM
 on:
   release:
     types: [published]
-  workflow_dispatch: # Allows you to manually click a "Run Workflow" button in GitHub
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -24,8 +23,13 @@ jobs:
           node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Verify stable release tag and package identity
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: node scripts/verify-release.mjs "$RELEASE_TAG"
+
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run Test Matrix
         run: npm test
@@ -34,6 +38,6 @@ jobs:
         run: npm run build --if-present
 
       - name: Publish to NPM (Stable)
-        run: npm publish --access public --tag latest --provenance
+        run: npm publish --access public --tag latest --provenance --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_SDUI_BLADE }}

@@ -1,6 +1,6 @@
 {
   "name": "@slashand/sdui-blade-core",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Framework-agnostic JSON-driven Blade orchestrator for Server-Driven UI architectures.",
   "author": "Slashand LLC",
   "license": "MIT",
@@ -27,7 +27,9 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "!dist/**/*.spec.*",
+    "!dist/**/*.test.*"
   ],
   "repository": {
     "type": "git",
@@ -42,7 +44,7 @@
     "tag": "latest"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "node scripts/clean-dist.mjs && tsc && node scripts/check-package.mjs",
     "dev": "tsc -w",
     "test": "vitest run",
     "publish:prod": "npm run publish:latest",
