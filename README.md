@@ -40,6 +40,16 @@ npm install @slashand/sdui-blade-core
 
 _(Note: You will typically consume this via a framework-specific wrapper like `@slashand/sdui-blade-react` or `@slashand/sdui-blade-angular`)_
 
+## Maintainer publishing
+
+For a new, reviewed stable version, run `npm run publish:latest` from this checkout.
+It checks that the version is unused, confirms npm login, runs tests and a clean
+build, then publishes directly to npm under `latest`. Complete npm's browser-based
+two-factor challenge when prompted. GitHub Releases do not publish this package.
+Local publishing does not generate npm's cloud CI provenance attestation. Verify
+the published version and integrity with `npm view @slashand/sdui-blade-core@latest version dist.integrity --json`
+and `npm dist-tag ls @slashand/sdui-blade-core`.
+
 ## Contributing
 
 We welcome open-source contributions. When pushing PRs or debating architecture, please refer to the `AGENTS.md` and the existing manifestos in the `docs/` folder to ensure alignment with the horizontal spatiality paradigm.
